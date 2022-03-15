@@ -1,4 +1,3 @@
-package com.aia;
 
 import java.security.KeyFactory;
 import java.security.KeyPair;
