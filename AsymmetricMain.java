@@ -20,8 +20,8 @@ import javax.xml.bind.DatatypeConverter;
 public class AsymmetricMain {
 
 	private static final String ALGORITHM = "RSA";
-	private static final String PVTKEY = "308204BD020100300D06092A864886F70D0101010500048204A7308204A30201000282010100A9FA337450AAC6455A3E0F967AFBF3C72E598A195ECCC5E86EF0D3EA02DA3D1FDBC11E703073B4BC4A2FCF873B46501165805E1B9555F5392E9D82F6D3B2A91E898EFB4AE0BFD2B494363BD355C0425D2ED8AE0F655E822476DFC44F7467BE0F282AB2E00B3FDD903F91E3D71891D82F411B5ADCA7399D17DEAAD13A4B378BF13092FE50A42273BC90BA8AFFFC245517AF088A16346517821FF74A5D3FE6395FEEA6BD1DB31F5E4C1966CC96317599048B7DEED79A1920388D606BDF17C1DD450C99A0BF867E3DA1F33161FD8585A48B02514D23EC6C430A0AB368A4F56006663374D74681B84D88C23F322BF9298B55C3BEC11D294796FD739A279D624D3571020301000102820100497770E1E733C8BA950499EC2A7FD79FD172B5F3BD3BB8967BCCEF6B078C983ABADABF73321DF09229667CC63062759CEF480A64D5A8EF72A5A942BFB844524076A82C08F31735D502F265ED33F5033A0F536BF80F9247A1C717745BFB2E13C1AD54B7378AE531B87521735EB6A9E2CC99D15EF65BF8D4E34A447E6639B86A6D4114FF9504E1BCB603E93C820996CF588B22C7789AB1C0DEDF192AE886818A831889DDD58F6162C84E41A7A8DFBB2658FD1561D6035CA6617EFFBEA517C4349F4376628D5D5878B37769601633F6FFE38712697E6C6376FBF6BAA16C9013320EBCF45C5E8925549AFB3BB0478429B53298F795E3714369F4F31ABADEBBDFA9A102818100ECA539236C47FB27B359CA5E45AA13D18F9DD2C970CD0E13786829FD0E932AADB9BA4EA262D329F3E9FB90396D2F8DE2A38B8628893C1B2E846AE77AFBE9EA6B2AFE682D6D6790093356DCE8AAB3397C8D6D1F3A0B5B61DC66CACA12776F9DE42189376978721703C378D55CA5D4C8DE98B423D28940180F75736A517A808D7D02818100B7E11C8D6479725907AE4AA495FD17E7CD37779711E9299E5F9E822A6C8E762BD8020BD5029EA4F0271628013D3269BCB5302E8F2B97371FDB81B1AE1AED94CACE44DB72FDCBE1DA5352742AB511E65C75F553E1D634266E06E6CADD2A57DA0EB8FAEC18C7848549E89BC818008DAA95D722696C9D418AE4673E6B13B3E6DA0502818006E2CBE5D6F9C53A2382E25B99E5580C4A048AA4A7EE9F913B78B478139B7EAB6D731964AA4180C00337F9BB620CF730F81750410FB53B09407B27DF31435E39DE17670AA35B571A9D6ED2A0C68ECE866C4B179485CE13EBE8E5CFB977D63C9EEDC6E360E34B56961A7302AA5E7CF19760942552B401B47186B6640A98E8F2B50281800A2DE012C3B92567605179B85AC544098506C90C07E5CC7403FF165D9ADCD815DD435FBC4F04D144AA2543D9ADB598BCE59AE138F3C4CF3C683E69C3A5A1F956B0CC87097A9B4AC9774B5D3AF00329A97CAE341290751A9B84AE4A14AC3F68C6DFDEA42B4B003F10B45BCB5BE8CBEEE194A3470AC839D4A28844A050DAE8B0B102818100B2C9ECE364717C8F6A0D47FAB3A07DD90F5F0BFDC85AB315C6CF1DEB8341FAF281428586197685CF0F50C615B73238AE579298DBC1BBFA38DCD6CD4C33D961F945105B25520A55765B0055B4371B9B5EC6D09BC525D3B31048FF4E913FD4B57EE228807DD826BD7F433CB64752873B2053FC7EC286EC17FEEEC0394D1738CE49";
-	private static final String PUBKEY = "30820122300D06092A864886F70D01010105000382010F003082010A0282010100A9FA337450AAC6455A3E0F967AFBF3C72E598A195ECCC5E86EF0D3EA02DA3D1FDBC11E703073B4BC4A2FCF873B46501165805E1B9555F5392E9D82F6D3B2A91E898EFB4AE0BFD2B494363BD355C0425D2ED8AE0F655E822476DFC44F7467BE0F282AB2E00B3FDD903F91E3D71891D82F411B5ADCA7399D17DEAAD13A4B378BF13092FE50A42273BC90BA8AFFFC245517AF088A16346517821FF74A5D3FE6395FEEA6BD1DB31F5E4C1966CC96317599048B7DEED79A1920388D606BDF17C1DD450C99A0BF867E3DA1F33161FD8585A48B02514D23EC6C430A0AB368A4F56006663374D74681B84D88C23F322BF9298B55C3BEC11D294796FD739A279D624D35710203010001";
+	private static final String PVTKEY = "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCa1OwhIXq10pykhtCap/stVCL0 X/1VyyeAl82HXEHotvw8F6TR8y9AsARdgSpHn6ozPaHSvo39QqTPvni065iaYidXFt4rR6dLrQ8S Ar1edbVQ/L//DCSQPQezmr0fL88R2oMO/MdPVPLlnwTJMXhMCQTnKydD/otShjSfpd9FVqII9BGh MR68pUBCtLgNcmn1YgBqXUyUGWahFbPsOAn0yRD+/28Y3xDYu3y3rNINITNf2bS2GKbmhKV1QLjp 0v7N5VppWBrrYlRSmlMyf2/1ChZPWEPUjdC117aR+PDY6t6dPtcap/pCxU4vQo1oIZBre1AEfoCe mt5bNj4yB30rAgMBAAECggEAeXfn1EomsfSMTYsyptJ4fORQE/YmkqMx13HAnZwkXQUJt7844Dlv 7cjpc838tHovlcmZZfN3A6TAFfcxTYazjxLIGEvpenzZY8ZeV1vs4ulnmSThH5+QI9StcRtJmejx A+mw/hYT60oS0VBC+fCklspQnWc+g9pzxQdiy4jfM8534yjv8FnFQqRxuqAZfbJraSx5E+nT3XSt IrLriMoKsNaLSzXn+RulGJndxRmcZ63j+rmoiEPxl9nrU0S/ZwLfvuaCv1wy7kuJB80Gfc8W3N7m 8sq5o8pAqxRe6nz1WnI5EabArSyysOOeZdXC9lt3liLUMy2EO3QYX7chiewdWQKBgQDzLB90HI5H o1pNzPA/SNVD1pZIENtgCI+ssrJymjwZNAZBP8OKYCbygmXsO3cwTvxJ7F3d0kif+aa6ndjgU+9B 71z/QZD81pKmbTHqvOU/ceEEP02DufIANaUPzR/ZRAtzgRmW3o1O2qQu7uZyFQAbgqh9sci3NqTb f2FfvMfLvQKBgQCi/9HJZHZwSdhpRVEYfQPVCa4Wmhd/PNc7nWCrex0RpTxCx7ov67O4kDnwRKVa 6en2D2GDgB0nZRq54tURrAe+J63gEqghlEI8kgC3jZazZyTtyVm4vL+Sb0ssadc+47LnGtoR6ibE +LId5RPKmmTwR0UUgVDZOtQwZf+xYIXHBwKBgQCvFtH+9KCtjDz1T96ccoC8O8IxWZHbb86jdndu dQdYzlDConrVI65nZuSkV5zWN8kIIRzlHwgTx9n4/Lavrz/Spdq8ICWZJ5aoJm+OqTwXlpOCT2Is urI43GdhHT0VXx0vqYEXVF9Cq8MT2AgtlFljdYyEFIKFCN9i/DDMkkz5sQKBgHm1OMj+2az4hr38 AxSc7EqbYsD/qAHaxP9/gJoqYEc3sOpQRgbYISbzkj+Ekk9zD74qN+6/r4Ul6jHYXK5IXLOw3xTL +XyxPlAJ2L013MvyfVGMIhFd5lGKBoCQOyd7T69ejmwIAZDb/etyjDeg1zPOk5c/A8ZgNeY5kxW3 88vrAoGBAIfCKxtchHtCDj0mp+mBmXUCxzywMJgHfdnBXd1McUdeJS0ExTNKifY3YESCQdwfVgFX 681wzsNdENQpGrN1VF47zZvra33/2cwy2eGB1wOb9wDuJiYwZWV5uTkvaf3q9+N8m03V9gJrR4tj wXnJZOeA1/4gjkmWdzoTCg0zO1LT";
+	private static final String PUBKEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmtTsISF6tdKcpIbQmqf7LVQi9F/9VcsngJfNh1xB6Lb8PBek0fMvQLAEXYEqR5+qMz2h0r6N/UKkz754tOuYmmInVxbeK0enS60PEgK9XnW1UPy//wwkkD0Hs5q9Hy/PEdqDDvzHT1Ty5Z8EyTF4TAkE5ysnQ/6LUoY0n6XfRVaiCPQRoTEevKVAQrS4DXJp9WIAal1MlBlmoRWz7DgJ9MkQ/v9vGN8Q2Lt8t6zSDSEzX9m0thim5oSldUC46dL+zeVaaVga62JUUppTMn9v9QoWT1hD1I3Qtde2kfjw2OrenT7XGqf6QsVOL0KNaCGQa3tQBH6AnpreWzY+Mgd9KwIDAQAB";
 
 	// Generating public & private keys
 	// using RSA algorithm.
@@ -81,15 +81,18 @@ public class AsymmetricMain {
 
 	private static void f2b(String cipherText) {
 		try {
-			PublicKey publicKey = getPublicKey(hexStringToByteArray(PUBKEY));
-			String decryptedText = decrypt(hexStringToByteArray(cipherText), publicKey);
-			System.out.println("The decrypted text is: " + decryptedText);
 			
-			byte[] encByPublicKey = encrypt(decryptedText, publicKey);
-			System.out.print("The Encrypted Text is: ");
-			System.out.println(DatatypeConverter.printHexBinary(encByPublicKey));
+			byte[] encodedPublicKey = Base64.getDecoder().decode((PUBKEY.replace(" ", "").getBytes()));
+			PublicKey publicKey = getPublicKey(encodedPublicKey);
+			String decryptedText = decrypt(Base64.getDecoder().decode(cipherText), publicKey);
+			System.out.println("Public : The decrypted text is: " + decryptedText);
 			
-			backendPro(DatatypeConverter.printHexBinary(encByPublicKey));
+			byte[] dataEncByPublicKey = encrypt(decryptedText, publicKey);
+			System.out.print("Public : The Encrypted Text is: ");
+			System.out.println(Base64.getEncoder().encodeToString(dataEncByPublicKey));
+			
+			backendPro(Base64.getEncoder().encodeToString(dataEncByPublicKey));
+			//backendPro(DatatypeConverter.printHexBinary(dataEncByPublicKey));
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -101,15 +104,12 @@ public class AsymmetricMain {
 	private static void backendPro(String cipherText) {
 		try {
 			
-			
-		PrivateKey privateKey = getPrivateKey(hexStringToByteArray(PVTKEY));
-		String decryptedText = decrypt(hexStringToByteArray(cipherText), privateKey);
-		System.out.println("The decrypted text is: " + decryptedText);
+		byte[] encodedPrivateKey = Base64.getDecoder().decode((PVTKEY.replace(" ", "").getBytes()));
+		PrivateKey privateKey = getPrivateKey(encodedPrivateKey);
+		String decryptedText = decrypt(Base64.getDecoder().decode(cipherText), privateKey);
+		System.out.println("Backend : The decrypted text is: " + decryptedText);
 		
 		
-		PublicKey publicKey = getPublicKey(hexStringToByteArray(PUBKEY));
-		String decryptedText2 = decrypt(hexStringToByteArray(cipherText), publicKey);
-		System.out.println("The decrypted text is: " + decryptedText2);
 		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -120,13 +120,24 @@ public class AsymmetricMain {
 
 	private static void b2f() {
 		try {
-			//KeyPair keypair = generateRSAKkeyPair();
-
+			/*
+			KeyPair keypair = generateRSAKkeyPair();
+			
+			System.out.println ("-----BEGIN PRIVATE KEY-----");
+	        System.out.println (Base64.getMimeEncoder().encodeToString( keypair.getPrivate().getEncoded()));
+	        System.out.println ("-----END PRIVATE KEY-----");
+	        System.out.println ("-----BEGIN PUBLIC KEY-----");
+	        System.out.println (Base64.getMimeEncoder().encodeToString( keypair.getPublic().getEncoded()));
+	        System.out.println ("-----END PUBLIC KEY-----");
+*/
 			String plainText = "This is the PlainText " + "I want to Encrypt using RSA.";
 			
 			
-			PublicKey publicKey = getPublicKey(hexStringToByteArray(PUBKEY));
-		    PrivateKey privateKey = getPrivateKey(hexStringToByteArray(PVTKEY));
+			byte[] encodedPublicKey = Base64.getDecoder().decode((PUBKEY.replace(" ", "").getBytes()));
+			byte[] encodedPrivateKey = Base64.getDecoder().decode((PVTKEY.replace(" ", "").getBytes()));
+
+			PublicKey publicKey = getPublicKey(encodedPublicKey);
+		    PrivateKey privateKey = getPrivateKey(encodedPrivateKey);
 		    
 			byte[] cipherText = encrypt(plainText, privateKey);
 
@@ -134,16 +145,16 @@ public class AsymmetricMain {
 
 			//System.out.println( "The Private Key is: " + DatatypeConverter.printHexBinary(keypair.getPrivate().getEncoded()));
 
-			System.out.print("The Encrypted Text is: ");
+			System.out.print("Backend :The Encrypted Text is: ");
 
-			System.out.println(DatatypeConverter.printHexBinary(cipherText));
+			System.out.println(Base64.getEncoder().encodeToString(cipherText));
 			
 			
 			String decryptedText = decrypt(cipherText, publicKey);
 
-			System.out.println("The decrypted text is: " + decryptedText);
+			System.out.println("Backend : The decrypted text is: " + decryptedText);
 
-			f2b(DatatypeConverter.printHexBinary(cipherText));
+			f2b(Base64.getEncoder().encodeToString(cipherText));
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -163,6 +174,8 @@ public class AsymmetricMain {
 	    }
 	    return bytes;
 	}
+	
+	
 	
     public static PublicKey getPublicKey(byte[] pk) throws NoSuchAlgorithmException, InvalidKeySpecException {
         EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(pk);
