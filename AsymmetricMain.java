@@ -6,8 +6,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SecureRandom;
-import java.security.interfaces.RSAPrivateKey;
-import java.security.interfaces.RSAPublicKey;
 import java.security.spec.EncodedKeySpec;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
@@ -15,7 +13,6 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 import javax.crypto.Cipher;
-import javax.xml.bind.DatatypeConverter;
 
 public class AsymmetricMain {
 
@@ -72,53 +69,32 @@ public class AsymmetricMain {
 
 		return new String(decryptedBytes);
 	}
+	
+    public static PublicKey getPublicKey(byte[] pk) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(pk);
+        KeyFactory kf = KeyFactory.getInstance(ALGORITHM);
+        PublicKey pub = kf.generatePublic(publicKeySpec);
+        return pub;
+    }
+
+    public static PrivateKey getPrivateKey(byte[] privk) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(privk);
+        KeyFactory kf = KeyFactory.getInstance("RSA");
+        PrivateKey privKey = kf.generatePrivate(keySpec);
+        return privKey;
+    }
 
 	// Driver code
 	public static void main(String args[]) throws Exception {
-		b2f();
+		springToAngularJS(); 
 
 	}
 
-	private static void f2b(String cipherText) {
-		try {
-			
-			byte[] encodedPublicKey = Base64.getDecoder().decode((PUBKEY.replace(" ", "").getBytes()));
-			PublicKey publicKey = getPublicKey(encodedPublicKey);
-			String decryptedText = decrypt(Base64.getDecoder().decode(cipherText), publicKey);
-			System.out.println("Public : The decrypted text is: " + decryptedText);
-			
-			byte[] dataEncByPublicKey = encrypt(decryptedText, publicKey);
-			System.out.print("Public : The Encrypted Text is: ");
-			System.out.println(Base64.getEncoder().encodeToString(dataEncByPublicKey));
-			
-			backendPro(Base64.getEncoder().encodeToString(dataEncByPublicKey));
-			//backendPro(DatatypeConverter.printHexBinary(dataEncByPublicKey));
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
 
-	}
-
-	private static void backendPro(String cipherText) {
-		try {
-			
-		byte[] encodedPrivateKey = Base64.getDecoder().decode((PVTKEY.replace(" ", "").getBytes()));
-		PrivateKey privateKey = getPrivateKey(encodedPrivateKey);
-		String decryptedText = decrypt(Base64.getDecoder().decode(cipherText), privateKey);
-		System.out.println("Backend : The decrypted text is: " + decryptedText);
-		
-		
-		
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-
-	private static void b2f() {
+	
+	// Encrypt the data by private key and send to angularjs
+	private static void springToAngularJS() {
 		try {
 			/*
 			KeyPair keypair = generateRSAKkeyPair();
@@ -154,7 +130,7 @@ public class AsymmetricMain {
 
 			System.out.println("Backend : The decrypted text is: " + decryptedText);
 
-			f2b(Base64.getEncoder().encodeToString(cipherText));
+			angularjsToSpringboot(Base64.getEncoder().encodeToString(cipherText));
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -163,65 +139,54 @@ public class AsymmetricMain {
 
 	}
 	
-	public static byte[] hexStringToByteArray(String hexString) {
-	    byte[] bytes = new byte[hexString.length() / 2];
-
-	    for(int i = 0; i < hexString.length(); i += 2){
-	        String sub = hexString.substring(i, i + 2);
-	        Integer intVal = Integer.parseInt(sub, 16);
-	        bytes[i / 2] = intVal.byteValue();
-	        String hex = "".format("0x%x", bytes[i / 2]);
-	    }
-	    return bytes;
-	}
-	
-	
-	
-    public static PublicKey getPublicKey(byte[] pk) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(pk);
-        KeyFactory kf = KeyFactory.getInstance(ALGORITHM);
-        PublicKey pub = kf.generatePublic(publicKeySpec);
-        return pub;
-    }
-
-    public static PrivateKey getPrivateKey(byte[] privk) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        //EncodedKeySpec privateKeySpec = new X509EncodedKeySpec(privk);
-        //KeyFactory kf = KeyFactory.getInstance(ALGORITHM);
-        //PrivateKey privateKey = kf.generatePrivate(privateKeySpec);
-        
-        
-        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(privk);
-        KeyFactory kf = KeyFactory.getInstance("RSA");
-        PrivateKey privKey = kf.generatePrivate(keySpec);
-        return privKey;
-    }
-
-	private static RSAPublicKey getPublicKey(String publicKey) {
+	//Receive encrypted data from springboot and decrypt by public key
+	//After any modification encrypt by public key and sent to springboot
+	private static void angularjsToSpringboot(String cipherText) {
 		try {
-			byte[] decoded = Base64.getDecoder().decode(publicKey);
-			X509EncodedKeySpec spec = new X509EncodedKeySpec(decoded);
-			KeyFactory kf = KeyFactory.getInstance(ALGORITHM);
-			RSAPublicKey generatePublic = (RSAPublicKey) kf.generatePublic(spec);
-			return generatePublic;
+			
+			byte[] encodedPublicKey = Base64.getDecoder().decode((PUBKEY.replace(" ", "").getBytes()));
+			PublicKey publicKey = getPublicKey(encodedPublicKey);
+			String decryptedText = decrypt(Base64.getDecoder().decode(cipherText), publicKey);
+			System.out.println("Public : The decrypted text is: " + decryptedText);
+			
+			byte[] dataEncByPublicKey = encrypt(decryptedText, publicKey);
+			System.out.print("Public : The Encrypted Text is: ");
+			System.out.println(Base64.getEncoder().encodeToString(dataEncByPublicKey));
+			
+			decryptBySpringboot(Base64.getEncoder().encodeToString(dataEncByPublicKey));
+			//decryptBySpringboot(DatatypeConverter.printHexBinary(dataEncByPublicKey));
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+
 	}
 	
-	private static RSAPrivateKey getPrivateKey(String privateKey) {
+	
+	//receive encrypted data and decrypt by private key and save to db
+	private static void decryptBySpringboot(String cipherText) {
 		try {
-			byte[] decoded = Base64.getDecoder().decode(privateKey);
-			X509EncodedKeySpec spec = new X509EncodedKeySpec(decoded);
-			KeyFactory kf = KeyFactory.getInstance(ALGORITHM);
-			RSAPrivateKey generatePrivate = (RSAPrivateKey) kf.generatePrivate(spec);
-			return generatePrivate;
+			
+		byte[] encodedPrivateKey = Base64.getDecoder().decode((PVTKEY.replace(" ", "").getBytes()));
+		PrivateKey privateKey = getPrivateKey(encodedPrivateKey);
+		String decryptedText = decrypt(Base64.getDecoder().decode(cipherText), privateKey);
+		System.out.println("Backend : The decrypted text is: " + decryptedText);
+		
+		
+		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		
 	}
+
+	
+	
+	
+
+
+
 
 }
